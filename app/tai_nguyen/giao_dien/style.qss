@@ -1,0 +1,498 @@
+/* =====================================================================
+   STYLESHEET DUNG CHUNG CHO TOAN BO UNG DUNG
+   He Thong Diem Danh Sinh Vien Bang Khuon Mat
+
+   Bang mau chu dao: "Xanh Pastel Sang Trong"
+   ---------------------------------------------------------------------
+   Nen ung dung ................ #EFF6FC  (xanh pastel rat nhat, am)
+   Be mat / the (card) ......... #FFFFFF
+   Vien nhe ..................... #DCEAF5
+   Xanh pastel chinh ............ #8FC1E3
+   Xanh nhan manh (nut, diem nhan) #5B9BD5  hover #4A87C0
+   Xanh dam 1 (gradient sidebar)  #1E3654
+   Xanh dam 2 (gradient sidebar)  #2D4E75
+   Chu tieu de (dam) ............ #1F3A56
+   Chu mo (phu) .................. #64798C
+   Thanh cong (pastel) .......... nen #DCF3E4  chu #2F7D52
+   Canh bao (pastel) ............ nen #FCEFD3  chu #8A6A1A
+   Nguy hiem (pastel) ........... nen #FBE0E0  chu #B94A48
+   ===================================================================== */
+
+* {
+    outline: none;
+}
+
+QWidget {
+    font-family: "Segoe UI", "SF Pro Display", "Helvetica Neue", "Arial", sans-serif;
+    font-size: 14px;
+    color: #33465C;
+    background-color: transparent;
+}
+
+QMainWindow, QScrollArea, QStackedWidget {
+    background-color: #EFF6FC;
+}
+
+QToolTip {
+    background-color: #1F3A56;
+    color: #FFFFFF;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+}
+
+/* ---------------------------------------------------------------------
+   MAN HINH DANG NHAP
+   --------------------------------------------------------------------- */
+#nenDangNhap {
+    background: qlineargradient(
+        x1: 0, y1: 0, x2: 1, y2: 1,
+        stop: 0 #DCEEFB, stop: 0.55 #EFF6FC, stop: 1 #E7F1FA
+    );
+}
+
+#khungDangNhap {
+    background-color: #FFFFFF;
+    border-radius: 20px;
+    max-width: 400px;
+}
+
+#khungBieuTuong {
+    background: qlineargradient(
+        x1: 0, y1: 0, x2: 1, y2: 1,
+        stop: 0 #8FC1E3, stop: 1 #5B9BD5
+    );
+    border-radius: 18px;
+}
+
+#nhanBieuTuong {
+    color: #FFFFFF;
+    font-size: 22px;
+    font-weight: bold;
+    background: transparent;
+}
+
+#nhanTieuDeDangNhap {
+    color: #1F3A56;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    background: transparent;
+}
+
+#nhanPhu {
+    color: #7C90A4;
+    font-size: 13px;
+    background: transparent;
+}
+
+#nhanLoi {
+    color: #C0392B;
+    font-weight: 600;
+    background: transparent;
+}
+
+#nhanGhiChu {
+    color: #A9BACB;
+    font-size: 11px;
+    background: transparent;
+}
+
+/* ---------------------------------------------------------------------
+   SIDEBAR
+   --------------------------------------------------------------------- */
+#sidebar {
+    background: qlineargradient(
+        x1: 0, y1: 0, x2: 0, y2: 1,
+        stop: 0 #1E3654, stop: 1 #26436A
+    );
+    border: none;
+}
+
+#khungThuongHieu {
+    background: transparent;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+#nhanBieuTuongNho {
+    background: qlineargradient(
+        x1: 0, y1: 0, x2: 1, y2: 1,
+        stop: 0 #8FC1E3, stop: 1 #5B9BD5
+    );
+    color: #10243B;
+    font-weight: bold;
+    font-size: 15px;
+    border-radius: 10px;
+}
+
+#nhanTenUngDung {
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 600;
+    background: transparent;
+}
+
+#nhanKhauHieu {
+    color: #8FB4D6;
+    font-size: 10px;
+    background: transparent;
+}
+
+#khungThongTinUser {
+    background: transparent;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+#nhanChuCaiDauTen {
+    background-color: rgba(143, 193, 227, 0.22);
+    color: #DCEEFB;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+#nhanHoTen {
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 600;
+    background: transparent;
+}
+
+#nhanVaiTro {
+    color: #8FB4D6;
+    font-size: 11px;
+    background: transparent;
+}
+
+#danhSachMenu {
+    background-color: transparent;
+    border: none;
+    color: #C7DCF0;
+    outline: none;
+    padding: 10px;
+}
+
+#danhSachMenu::item {
+    padding: 11px 14px;
+    border: none;
+    border-radius: 10px;
+    margin: 2px 0px;
+}
+
+#danhSachMenu::item:selected {
+    background-color: rgba(143, 193, 227, 0.20);
+    color: #FFFFFF;
+    font-weight: 600;
+    border-left: 3px solid #8FC1E3;
+    padding-left: 11px;
+}
+
+#danhSachMenu::item:hover:!selected {
+    background-color: rgba(255, 255, 255, 0.06);
+    color: #FFFFFF;
+}
+
+#nutDangXuat {
+    background-color: transparent;
+    color: #F0B4B4;
+    border: 1px solid rgba(240, 180, 180, 0.35);
+    padding: 10px;
+    margin: 14px;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+#nutDangXuat:hover {
+    background-color: rgba(196, 74, 74, 0.18);
+    border: 1px solid rgba(240, 180, 180, 0.55);
+}
+
+/* ---------------------------------------------------------------------
+   TIEU DE TRANG
+   --------------------------------------------------------------------- */
+#nhanTieuDeTrang {
+    font-size: 22px;
+    font-weight: 700;
+    color: #1F3A56;
+    letter-spacing: 0.1px;
+    background: transparent;
+}
+
+#nhanTieuDePhu {
+    font-size: 15px;
+    font-weight: 600;
+    color: #33465C;
+    margin-top: 6px;
+    background: transparent;
+}
+
+/* ---------------------------------------------------------------------
+   THE THONG KE (DASHBOARD)
+   --------------------------------------------------------------------- */
+#theThongKe {
+    background-color: #FFFFFF;
+    border-radius: 16px;
+    border: 1px solid #E4EEF7;
+}
+
+#khungBieuTuongThongKe {
+    border-radius: 12px;
+}
+
+#nhanGiaTriThongKe {
+    color: #1F3A56;
+    font-size: 26px;
+    font-weight: 700;
+    background: transparent;
+}
+
+#nhanTieuDeThongKe {
+    color: #7C90A4;
+    font-size: 12px;
+    font-weight: 500;
+    background: transparent;
+}
+
+/* ---------------------------------------------------------------------
+   NUT BAM
+   --------------------------------------------------------------------- */
+QPushButton {
+    background-color: #EAF2FA;
+    color: #33465C;
+    border: 1px solid #DCEAF5;
+    border-radius: 9px;
+    padding: 9px 18px;
+    font-weight: 500;
+}
+
+QPushButton:hover {
+    background-color: #DCEEFB;
+    border: 1px solid #C6DFF2;
+}
+
+QPushButton:pressed {
+    background-color: #CFE4F5;
+}
+
+#nutChinh {
+    background: qlineargradient(
+        x1: 0, y1: 0, x2: 1, y2: 0,
+        stop: 0 #6FADDA, stop: 1 #4A87C0
+    );
+    color: #FFFFFF;
+    font-weight: 600;
+    border: none;
+}
+
+#nutChinh:hover {
+    background: qlineargradient(
+        x1: 0, y1: 0, x2: 1, y2: 0,
+        stop: 0 #5B9BD5, stop: 1 #3E76AA
+    );
+}
+
+#nutChinh:pressed {
+    background: #3E76AA;
+}
+
+#nutNguyHiem {
+    background-color: #FBE0E0;
+    color: #B94A48;
+    border: 1px solid #F6C9C9;
+    font-weight: 600;
+}
+
+#nutNguyHiem:hover {
+    background-color: #F8CDCD;
+    border: 1px solid #F0B4B4;
+}
+
+/* ---------------------------------------------------------------------
+   BANG DU LIEU
+   --------------------------------------------------------------------- */
+QTableWidget {
+    background-color: #FFFFFF;
+    alternate-background-color: #F6FAFD;
+    gridline-color: #EAF2FA;
+    border: 1px solid #E4EEF7;
+    border-radius: 12px;
+    selection-background-color: #DCEEFB;
+    selection-color: #1F3A56;
+}
+
+QTableWidget::item {
+    padding: 6px;
+    border: none;
+}
+
+QHeaderView::section {
+    background-color: #F6FAFD;
+    padding: 8px 6px;
+    border: none;
+    border-bottom: 2px solid #DCEAF5;
+    font-weight: 600;
+    color: #4A5D72;
+}
+
+QTableCornerButton::section {
+    background-color: #F6FAFD;
+    border: none;
+}
+
+/* ---------------------------------------------------------------------
+   O NHAP LIEU
+   --------------------------------------------------------------------- */
+QLineEdit, QComboBox, QDateEdit, QTimeEdit, QSpinBox {
+    background-color: #FFFFFF;
+    border: 1.5px solid #DCEAF5;
+    border-radius: 9px;
+    padding: 8px 12px;
+    selection-background-color: #8FC1E3;
+}
+
+QLineEdit:focus, QComboBox:focus, QDateEdit:focus, QTimeEdit:focus, QSpinBox:focus {
+    border: 1.5px solid #5B9BD5;
+}
+
+QComboBox::drop-down {
+    border: none;
+    width: 24px;
+}
+
+QComboBox QAbstractItemView {
+    background-color: #FFFFFF;
+    border: 1px solid #DCEAF5;
+    selection-background-color: #DCEEFB;
+    selection-color: #1F3A56;
+    border-radius: 8px;
+    padding: 4px;
+}
+
+/* ---------------------------------------------------------------------
+   KHUNG CAMERA
+   --------------------------------------------------------------------- */
+#khungCamera {
+    background-color: #16283F;
+    color: #8FB4D6;
+    border-radius: 14px;
+    border: 1px solid #26436A;
+}
+
+#nhanTrangThaiBuoiHoc {
+    font-weight: 600;
+    color: #33465C;
+    background: transparent;
+}
+
+#nhanKetQuaNhanDien {
+    font-weight: 600;
+    color: #33465C;
+    background: transparent;
+    padding: 4px 2px;
+}
+
+#nhanKetQuaNhanDien[trangThai="thanhCong"] {
+    color: #2F7D52;
+    background-color: #DCF3E4;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+#nhanKetQuaNhanDien[trangThai="thatBai"] {
+    color: #B94A48;
+    background-color: #FBE0E0;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+/* ---------------------------------------------------------------------
+   TAB
+   --------------------------------------------------------------------- */
+QTabWidget::pane {
+    border: 1px solid #E4EEF7;
+    border-radius: 12px;
+    background-color: #FFFFFF;
+    top: -1px;
+}
+
+QTabBar::tab {
+    padding: 9px 22px;
+    background-color: #EAF2FA;
+    color: #64798C;
+    margin-right: 4px;
+    border-top-left-radius: 9px;
+    border-top-right-radius: 9px;
+    font-weight: 500;
+}
+
+QTabBar::tab:selected {
+    background-color: #FFFFFF;
+    color: #1F3A56;
+    font-weight: 700;
+    border: 1px solid #E4EEF7;
+    border-bottom: none;
+}
+
+/* ---------------------------------------------------------------------
+   DIALOG / HOP THOAI
+   --------------------------------------------------------------------- */
+QDialog {
+    background-color: #FFFFFF;
+}
+
+QDialog QLabel {
+    background: transparent;
+    color: #33465C;
+}
+
+/* ---------------------------------------------------------------------
+   THANH CUON
+   --------------------------------------------------------------------- */
+QScrollBar:vertical {
+    background: transparent;
+    width: 10px;
+    margin: 2px;
+}
+
+QScrollBar::handle:vertical {
+    background: #C6DFF2;
+    border-radius: 5px;
+    min-height: 30px;
+}
+
+QScrollBar::handle:vertical:hover {
+    background: #A9CDE9;
+}
+
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+    height: 0px;
+}
+
+QScrollBar:horizontal {
+    background: transparent;
+    height: 10px;
+    margin: 2px;
+}
+
+QScrollBar::handle:horizontal {
+    background: #C6DFF2;
+    border-radius: 5px;
+    min-width: 30px;
+}
+
+QScrollBar::add-line:horizontal, QScrollBar::sub-line:horizontal {
+    width: 0px;
+}
+
+/* ---------------------------------------------------------------------
+   MESSAGEBOX / INPUTDIALOG
+   --------------------------------------------------------------------- */
+QMessageBox {
+    background-color: #FFFFFF;
+}
+
+QMessageBox QLabel {
+    color: #33465C;
+    background: transparent;
+}

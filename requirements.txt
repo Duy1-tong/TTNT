@@ -1,0 +1,36 @@
+# =============================================================
+# THU VIEN CAN THIET - HE THONG DIEM DANH SINH VIEN BANG KHUON MAT
+# Cai dat: pip install -r requirements.txt
+# =============================================================
+
+# ----- Giao dien do hoa -----
+PySide6>=6.6.0
+
+# ----- Co so du lieu -----
+SQLAlchemy>=2.0.0
+PyMySQL>=1.1.0
+mysql-connector-python>=8.2.0
+
+# ----- Bao mat -----
+bcrypt>=4.1.0
+python-dotenv>=1.0.0
+
+# ----- Xu ly anh / AI -----
+opencv-python>=4.9.0
+numpy>=1.26.0,<2.0.0
+Pillow>=10.2.0
+
+# Cac thu vien AI nang cao (co the khong cai duoc tren moi may,
+# he thong se tu dong fallback sang OpenCV neu thieu):
+ultralytics>=8.1.0
+insightface>=0.7.3
+onnxruntime>=1.17.0
+
+# ----- Xuat bao cao -----
+openpyxl>=3.1.2
+reportlab>=4.1.0
+matplotlib>=3.8.0
+
+# ----- Kiem thu -----
+pytest>=8.0.0
+pytest-mock>=3.12.0

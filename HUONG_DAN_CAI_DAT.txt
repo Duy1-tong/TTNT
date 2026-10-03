@@ -1,0 +1,6 @@
+        cd du_an_diem_danh_khuon_mat
+        copy .env.example .env
+        source .venv/bin/activate
+        pip install -r requirements.txt
+        cai_dat.py
+        python run.py

@@ -1,0 +1,14 @@
+.venv/
+venv/
+__pycache__/
+*.pyc
+.env
+*.pt
+*.onnx
+*.pth
+*.zip
+app/tai_nguyen/model/
+.DS_Store
+*.log
+.idea/
+.vscode/
