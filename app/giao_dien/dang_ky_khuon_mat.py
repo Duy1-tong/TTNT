@@ -160,9 +160,24 @@ class TrangDangKyKhuonMat(QWidget):
         self._hien_thi_khung_hinh(khung_hinh)
 
     def _hien_thi_khung_hinh(self, khung_hinh_bgr: np.ndarray) -> None:
-        khung_hinh_rgb = cv2.cvtColor(khung_hinh_bgr, cv2.COLOR_BGR2RGB)
+        # Lật ngang hình ảnh hiển thị để camera giống như gương
+        khung_hinh_hien_thi = cv2.flip(khung_hinh_bgr, 1)
+
+        khung_hinh_rgb = cv2.cvtColor(
+            khung_hinh_hien_thi,
+            cv2.COLOR_BGR2RGB
+        )
+
         cao, rong, kenh = khung_hinh_rgb.shape
-        anh_qt = QImage(khung_hinh_rgb.data, rong, cao, kenh * rong, QImage.Format.Format_RGB888)
+
+        anh_qt = QImage(
+            khung_hinh_rgb.data,
+            rong,
+            cao,
+            kenh * rong,
+            QImage.Format.Format_RGB888
+        )
+
         self._nhan_camera.setPixmap(
             QPixmap.fromImage(anh_qt).scaled(
                 self._nhan_camera.size(),

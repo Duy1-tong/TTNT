@@ -392,9 +392,11 @@ class TrangDiemDanh(QWidget):
     def _tat_camera(self) -> None:
         self._bo_dinh_thoi_camera.stop()
         self._bo_dinh_thoi_nhan_dien.stop()
+
         if self._camera is not None:
             self._camera.release()
             self._camera = None
+
         self._nhan_camera.setText("Camera chưa được bật.")
         self._nhan_camera.setPixmap(QPixmap())
         self._nut_bat_camera.setText("Bật Camera && Nhận Diện")
@@ -402,13 +404,40 @@ class TrangDiemDanh(QWidget):
     def _cap_nhat_khung_hinh(self) -> None:
         if self._camera is None:
             return
+
         doc_thanh_cong, khung_hinh = self._camera.read()
+
         if not doc_thanh_cong:
             return
-        self._bo_dem_khung_hinh.append(khung_hinh)
-        khung_hinh_rgb = cv2.cvtColor(khung_hinh, cv2.COLOR_BGR2RGB)
+
+        # ==========================================================
+        # LƯU FRAME GỐC CHO AI NHẬN DIỆN
+        # ==========================================================
+        self._bo_dem_khung_hinh.append(khung_hinh.copy())
+
+        # ==========================================================
+        # LẬT NGANG CHỈ HÌNH ẢNH HIỂN THỊ
+        # ==========================================================
+        # 1 = lật ngang trái <-> phải
+        # Không lật frame gốc để tránh ảnh hưởng AI nhận diện.
+        khung_hinh_hien_thi = cv2.flip(khung_hinh, 1)
+
+        # Chuyển BGR -> RGB để hiển thị bằng Qt
+        khung_hinh_rgb = cv2.cvtColor(
+            khung_hinh_hien_thi,
+            cv2.COLOR_BGR2RGB
+        )
+
         cao, rong, kenh = khung_hinh_rgb.shape
-        anh_qt = QImage(khung_hinh_rgb.data, rong, cao, kenh * rong, QImage.Format.Format_RGB888)
+
+        anh_qt = QImage(
+            khung_hinh_rgb.data,
+            rong,
+            cao,
+            kenh * rong,
+            QImage.Format.Format_RGB888
+        )
+
         self._nhan_camera.setPixmap(
             QPixmap.fromImage(anh_qt).scaled(
                 self._nhan_camera.size(),
@@ -416,6 +445,43 @@ class TrangDiemDanh(QWidget):
                 Qt.TransformationMode.SmoothTransformation,
             )
         )
+
+    def _thu_diem_danh_tu_dong(self) -> None:
+        if (
+            self._buoi_hoc_dang_chon_id is None
+            or len(self._bo_dem_khung_hinh) == 0
+        ):
+            return
+
+        nguong = lay_cau_hinh().ai.nguong_do_tuong_dong
+
+        try:
+            ket_qua = dv_diem_danh.diem_danh_bang_khuon_mat(
+                buoi_hoc_id=self._buoi_hoc_dang_chon_id,
+                danh_sach_khung_hinh_gan_nhat=list(
+                    self._bo_dem_khung_hinh
+                ),
+                nguong_do_tuong_dong=nguong,
+                nguoi_thuc_hien_id=self.phien_dang_nhap.nguoi_dung_id,
+            )
+        except Exception as loi:
+            _bo_ghi_log.exception(
+                "Loi khi thu diem danh bang khuon mat"
+            )
+            self._cap_nhat_nhan_ket_qua(
+                f"Lỗi hệ thống: {loi}",
+                thanh_cong=False
+            )
+            return
+
+        self._cap_nhat_nhan_ket_qua(
+            ket_qua.thong_bao,
+            thanh_cong=ket_qua.thanh_cong
+        )
+
+        if ket_qua.thanh_cong:
+            self._nap_lai_bang_diem_danh()
+            self._cap_nhat_trang_thai_hien_thi()
 
     def _thu_diem_danh_tu_dong(self) -> None:
         if self._buoi_hoc_dang_chon_id is None or len(self._bo_dem_khung_hinh) == 0:
