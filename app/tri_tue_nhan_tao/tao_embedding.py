@@ -71,18 +71,42 @@ class BoTaoEmbedding:
             return False
 
     def tao_embedding(self, anh_khuon_mat_bgr: np.ndarray) -> np.ndarray | None:
-        """Tra ve vector embedding da chuan hoa (norm = 1) hoac None neu that bai."""
+        """Tao embedding tu khuon mat.
+
+        Neu InsightFace khong duoc khoi tao ngay tu dau,
+        he thong moi su dung phuong phap du phong OpenCV.
+
+        Neu InsightFace dang hoat dong nhung khong tao duoc
+        embedding tu anh hien tai, khong tu dong chuyen
+        sang fallback de tranh thay doi backend nhan dien
+        mot cach khong kiem soat.
+        """
         if anh_khuon_mat_bgr is None or anh_khuon_mat_bgr.size == 0:
             return None
-        if self.dang_dung_insightface:
-            embedding = self._tao_embedding_insightface(anh_khuon_mat_bgr)
-            if embedding is not None:
-                return embedding
+
+        if not self.dang_dung_insightface:
             _bo_ghi_log.warning(
-                "InsightFace khong phat hien duoc khuon mat trong anh da cat, "
-                "chuyen sang phuong phap du phong cho lan nay."
+                "InsightFace khong kha dung. "
+                "Dang su dung phuong phap nhan dien du phong OpenCV."
             )
-        return self._tao_embedding_du_phong(anh_khuon_mat_bgr)
+
+            return self._tao_embedding_du_phong(
+                anh_khuon_mat_bgr
+            )
+
+        embedding = self._tao_embedding_insightface(
+            anh_khuon_mat_bgr
+        )
+
+        if embedding is None:
+            _bo_ghi_log.warning(
+                "InsightFace khong tao duoc embedding "
+                "cho anh khuon mat hien tai. "
+                "Khong tu dong chuyen sang fallback."
+            )
+            return None
+
+        return embedding
 
     def _tao_embedding_insightface(self, anh_khuon_mat_bgr: np.ndarray) -> np.ndarray | None:
         try:
